@@ -1,0 +1,52 @@
+body {
+    background-image: url('/images/bodybg.jpg');
+}
+
+.btn-primary {
+    color: #cad2c5;
+    background-color: #414833;
+    border-color: #656d4a;
+    border-radius: 10px;
+    margin: 0.5rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+#logIn {
+    color: #cad2c5;
+    background-color: rgba(37, 24, 1, 0.607);
+    border-color: #656d4a;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    color: #2e401c;
+    background-color: #bfab67;
+    border-color: #656d4a;
+    border-radius: 50px;
+    transition: 2s;
+}
+
+.form-group {
+    padding: 10rem;
+}
+
+@media (min-width:510px) and (max-width:1200px) {
+    .form-group {
+        padding: 10rem;
+    }
+}
+
+@media (min-width:375px) and (max-width:510px) {
+    .form-group {
+        padding: 8rem;
+    }
+}
+
+@media (max-width:375px) {
+    .form-group {
+        padding: 4rem;
+    }
+}

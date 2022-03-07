@@ -1,0 +1,160 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.411);
+    transition: 0.3s;
+    width: 20rem;
+    margin: 2rem;
+    background-color: #f2e9e4;
+    border-radius: 20px;
+    float: left;
+    padding: 1em;
+    font-weight: bold;
+    display: grid;
+}
+
+.image-link {
+    color: #cad2c5;
+    background-color: #414833;
+    border-color: #656d4a;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+.image-link:hover,
+.image-link:focus {
+    color: #2e401c;
+    background-color: #bfab67;
+    border-color: #656d4a;
+    border-radius: 50px;
+    transition: 2s;
+}
+
+a.image-link {
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    color: #cad2c5;
+    background-color: #414833;
+    border-color: #656d4a;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    color: #2e401c;
+    background-color: #bfab67;
+    border-color: #656d4a;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 60px 100px 0 rgb(0, 0, 0);
+    transform: translateY(-0.20em);
+}
+
+.badge badge-light {
+    background-color: #fff1e6;
+}
+
+img {
+    border-radius: 20px;
+}
+
+.card-img,
+.card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-text {
+    color: grey;
+    width: 200px;
+    height: 90px;
+}
+
+.card:hover {
+    box-shadow: 0 60px 100px 0 rgba(36, 20, 20, 0.918);
+    background-color: rgb(65, 37, 2);
+    color: rgb(245, 240, 216);
+    border-radius: 30px;
+    transition: 1s;
+    transform: translateY(-0.25em);
+}
+
+a {
+    text-decoration: none;
+}
+
+h5 {
+    color: black;
+}
+
+.card:hover h5 {
+    color: white;
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+
+.total-quantity {
+    text-align: center;
+    font-weight: bold;
+}
+
+.disabledButton {
+    color: #2e401c;
+    background-color: #bfab67 !important;
+    border-color: #656d4a;
+    border-radius: 50px;
+}
+
+.onSale {
+    position: relative;
+    color: grey;
+}
+
+.onSale:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 2px solid;
+    border-color: rgba(243, 0, 0, 0.671);
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+}
+
+.newPrice30 {
+    color: rgb(0, 149, 137);
+    font-weight: bold;
+}
+
+.newPrice50 {
+    color: rgb(0, 98, 190);
+    font-weight: bold;
+}
+
+#border {
+    border-color: lightgrey;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+#saleBorder {
+    border-color: rgba(0, 121, 111, 0.15) !important;
+    border-style: solid !important;
+    border-radius: 10px !important;
+    padding: 0.4rem;
+}

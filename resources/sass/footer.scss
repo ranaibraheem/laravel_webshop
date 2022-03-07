@@ -1,0 +1,37 @@
+#footer {
+    bottom: 0;
+    height: 90px;
+    margin-top: 100px;
+    margin-bottom: 0;
+    background-color: #f2e9e4;
+    border-radius: 10px;
+}
+
+.fa {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 5px;
+    color: white;
+    border-radius: 10%;
+    display: inline-block;
+}
+
+.fa-facebook {
+    background: #3B5998;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+}
+
+.fa-instagram {
+    background: #d55d92;
+}
+
+.nav-item {
+    font-size: 20px;
+}

@@ -1,0 +1,48 @@
+h1 {
+    color: rgb(245, 240, 216);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 2em;
+    padding: 1rem;
+}
+
+nav {
+    border: lightgrey solid 2px;
+    background-color: rgb(110, 77, 36);
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 1em;
+}
+
+.basket {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.411);
+    transition: 0.3s;
+    background-color: #f2e9e4;
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+
+#cart {
+    display: block;
+    font-size: 1rem;
+    color: #cad2c5;
+}
+
+#cart:hover {
+    color: #2e401c;
+}
+
+#remove {
+    display: block;
+    color: #cad2c5;
+}
+
+#remove:hover {
+    color: #2e401c;
+}
+
+.soldOut {
+    color: red;
+}
