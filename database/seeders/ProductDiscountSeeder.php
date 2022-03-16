@@ -18,6 +18,7 @@ class ProductDiscountSeeder extends Seeder
             $discounts = [
                 'onsale30',
                 'onsale50',
+                'nosale',
             ];
     
             foreach ($discounts as $discount) {

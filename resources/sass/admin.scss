@@ -1,3 +1,22 @@
 .admin_menu {
     display: flex;
+    justify-content: center;
 }
+
+.admin_btn {
+margin-bottom: 0.5em;
+}
+
+.text_welcome_admin{
+    display: flex;
+    justify-content: center;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+    display: none;
+}
+
+// .admin_card{
+    
+// }
