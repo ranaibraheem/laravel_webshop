@@ -6,7 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import 'admin.scss';
+
+
 @import 'body.scss';
 @import 'card.scss';
 @import 'detail.scss';
@@ -18,3 +19,8 @@
 @import 'responsive.scss';
 @import 'sidenav.scss';
 @import 'signin.scss';
+
+@import 'admin.scss';
+@import 'welcome.scss';
+
+

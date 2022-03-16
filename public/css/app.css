@@ -11286,10 +11286,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.admin_menu {
-  display: flex;
-}
-
 body {
   display: block;
   margin: auto;
@@ -11298,7 +11294,7 @@ body {
   background-image: url("/images/bodybg.jpg");
 }
 
-.card {
+.product_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.411);
   transition: 0.3s;
   width: 20rem;
@@ -11374,7 +11370,7 @@ img {
   height: 90px;
 }
 
-.card:hover {
+.product_card:hover {
   box-shadow: 0 60px 100px 0 rgba(36, 20, 20, 0.918);
   background-color: #412502;
   color: #f5f0d8;
@@ -11391,7 +11387,7 @@ h5, .h5 {
   color: black;
 }
 
-.card:hover h5, .card:hover .h5 {
+.product_card:hover h5, .product_card:hover .h5 {
   color: white;
 }
 
@@ -11509,7 +11505,7 @@ h1, .h1 {
   padding: 1rem;
 }
 
-nav {
+.header_nav {
   border: lightgrey solid 2px;
   background-color: #6e4d24;
   font-weight: bold;
@@ -11789,15 +11785,23 @@ option {
   width: 200px;
   left: 0;
   background-color: #fff1e69d;
-  overflow-x: hidden;
   padding-top: 20px;
   border-radius: 10px;
   margin-right: 3rem;
+  justify-content: space-around;
 }
 
 .sideBtn {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.wimg {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
 }
 
 body {
@@ -11849,4 +11853,55 @@ body {
   .form-group {
     padding: 4rem;
   }
+}
+.admin_menu {
+  display: flex;
+  justify-content: center;
+}
+
+.admin_btn {
+  margin-bottom: 0.5em;
+}
+
+.text_welcome_admin {
+  display: flex;
+  justify-content: center;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+  display: none;
+}
+
+.header_welcome_nav {
+  border: lightgrey solid 2px;
+  background-color: #6e4d24;
+  background: url("/images/background.jpg");
+  font-weight: bold;
+  border-radius: 20px;
+  margin: 1em;
+  height: 16em;
+}
+
+.welcome_body_img {
+  background: url("/images/bodybg.jpg");
+}
+
+.welcome_image {
+  background: url("/images/coffeeGif1.gif");
+}
+
+#homeImg {
+  margin-top: 1em;
+  margin-right: 1em;
+  width: 100%;
+  min-height: 500px;
+  opacity: 0.3;
+  margin-left: -2em;
+}
+
+.welcome_menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

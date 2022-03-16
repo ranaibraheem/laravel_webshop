@@ -1,53 +1,31 @@
 <template>
     <section class="products block">
-        <!-- <div class="card container-fluid col-md-5" v-for="product_image in product_media" :key="product_image.product_id">
-            <a :href="imagePath + product_image.file_name">
-                <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
+        <div class="product_card card container-fluid col-md-5" v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">
+            <a :href="imagePath + product.image">
+                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
             </a>
+            <div class="card-body">
+                <h5>{{product.name}}</h5><hr>
+                <p v-if="product.onsale30"><b>Sale 30%</b> 
+                    <span class="onSale">{{product.price}}$</span><br>
+                    <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
+                </p>
+                <p v-else-if="product.onsale50"><b>Sale 50%</b>
+                    <span class="onSale">{{product.price}}$</span><br>
+                    <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
+                </p>
+                <p v-else>Price: {{product.price}}$</p>
+                <p class="soldOut" v-if="product.stock===0">Sold Out</p>
+                <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
+                <p v-else-if="product.stock>5">In Stock</p>
+                <span>&#x1F6D2;</span>
+                <button class="addToCart btn btn-primary" @click="updateCart(product)">Order </button>
+                <a :href="'detail/' + product.id">
+                    <button class="btn btn-primary" @click="detail(index)">More Details</button>
+                </a>
+            </div>
         </div>
-        
-        <div class="card container-fluid col-md-5" v-for="product in products" :key="product.id">
-            <h5>{{product.name}}</h5><hr>
-            <p class="card-text">{{product.description}}</p><hr>
-            <p class="card-text">{{product.info}}</p><hr> 
-            <p class="card-text">{{product.price}}</p><hr> 
-        </div> -->
-            
-
-    <div class="card container-fluid col-md-5" v-for="product in products" :key="product.id">
-        <a :href="imagePath + product.image">
-            <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
-        </a>
-        <div class="card-body">
-            <h5>{{product.name}}</h5><hr>
-            <p class="card-text">{{product.description}}</p><hr>
-            <p v-if="product.onSale30"><b>Sale 30%</b> 
-                <span class="onSale">{{product.price}}$</span><br>
-                <span class="newPrice30"> New Price: <b>{{product.newPrice30}}$</b></span>
-            </p>
-            <p v-else-if="product.onSale50"><b>Sale 50%</b>
-                <span class="onSale">{{product.price}}$</span><br>
-                <span class="newPrice50"> New Price: <b>{{product.newPrice50}}$</b></span>
-            </p>
-            <p v-else>Price: {{product.price}}$</p>
-            <p class="soldOut" v-if="product.stock===0">Sold Out</p>
-            <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
-            <p v-else-if="product.stock>5">In Stock</p>
-            <span>&#x1F6D2;</span>
-            <button class="addToCart btn btn-primary" @click="updateCart(product,'substract')"
-                :disabled="product.stock === 0 && product.quantity===0"
-                :class="{disabledButton: product.stock===0 && product.quantity===0}">-
-            </button>
-            <span>{{product.quantity}}</span>
-            <button class=" addToCart btn btn-primary" @click="updateCart(product,'add')"
-                :disabled="product.stock === 0" :class="{disabledButton: product.stock === 0}">+
-            </button><hr>
-            <a :href="'products/' + product.id">
-                <button class="btn btn-primary" style="margin-left:4rem">More Details</button>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 </template>
 
 <script>
@@ -55,52 +33,123 @@
     export default {
        
         props:{
+            
         },
 
         data() {
             return {
-                products: [],
-                product_media: [],
+                // products:[],
+                // product_media: [],
+                // product_discounts: [],
+                // product_has_discounts: [],
+                // product_categories: [],
+                // product_has_categories: [],
+                // product_stocks: [],
+                allproducts: [],
                 imagePath: '/images/webshop/',
             }
         },
 
         mounted() {
-            console.log('Component mounted.')
-            this.loadProducts();
-            this.loadProductMedia();
+            // console.log('Component mounted.')
+            // this.loadProduct();
+            // this.loadProductMedia();
+            // this.loadProductDiscount();
+            // this.loadProductHasDiscount();
+            // this.loadProductCategorie();
+            // this.loadProductHasCategorie();
+            // this.loadProductStock();
+            this.loadAllproduct();
         },
+
          created() {
-
-    },
-
-
-    methods: {
-
-        loadProducts(){
-            axios.get('/api/products')
-            .then((response) =>{
-                this.products = response.data.data;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
         },
 
-        loadProductMedia(){
-            axios.get('/api/product_media')
-            .then((response) =>{
-                this.product_media = response.data.data;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        },
+        methods: {
+            // loadProduct(){
+            //     axios.get('/api/products')
+            //     .then((response) =>{
+            //         this.products = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-        updateCart(product, updateType) {
-            this.$root.$emit('update-cart', product, updateType)
-        },
-    },
+            // loadProductMedia(){
+            //     axios.get('/api/product_media')
+            //     .then((response) =>{
+            //         this.product_media = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
+            // loadProductDiscount(){
+            //     axios.get('/api/product_discounts')
+            //     .then((response) =>{
+            //         this.product_discounts = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+            // loadProductHasDiscount(){
+            //     axios.get('/api/product_has_discounts')
+            //     .then((response) =>{
+            //         this.product_has_discounts = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductCategorie(){
+            //     axios.get('/api/product_categories')
+            //     .then((response) =>{
+            //         this.product_categories = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductHasCategorie(){
+            //     axios.get('/api/product_has_categories')
+            //     .then((response) =>{
+            //         this.product_has_categories = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductStock(){
+            //     axios.get('/api/product_stocks')
+            //     .then((response) =>{
+            //         this.product_stocks = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+            loadAllproduct(){
+                axios.get('/api/allproducts')
+                .then((response) =>{
+                    this.allproducts = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
+            },
+            detail(index){
+                this.$root.$emit('detail', index)
+            }
+        },
     }
 </script>

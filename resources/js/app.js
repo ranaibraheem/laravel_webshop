@@ -5,12 +5,14 @@
  */
 
 const { distanceAndSkiddingToXY } = require('@popperjs/core/lib/modifiers/offset');
-const { defaultsDeep } = require('lodash');
+const { defaultsDeep, isEmpty } = require('lodash');
 
-//  import Vue from 'vue';
+import axios from 'axios';
+ import Vue from 'vue';
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,50 +25,56 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('test-component', require('./components/TestComponent.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.component('products-component', require('./components/ProductsComponent.vue').default);
-
+Vue.component('detail-component', require('./components/DetailComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// import ProductComponent from './components/ProductComponent';
+// import CartComponent from './components/CartComponent';
 
 const app = new Vue({
     el: '#app',
     props: {
+		productindex:{
+			type:Number
+		}
 	},
+
 	data: {
 		brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
 		appName: 'Coffee Products',
+		// products:[],
+		// product_media: [],
+		// product_discounts: [],
+		// product_has_discounts: [],
+		// product_categoies: [],
+		// product_has_categories: [],
+		// product_stocks: [],
+		allproducts: [],
+        product_filter: 'all',
+		filters :'all',
 		shoppingCart: [],
-		products:[],
-		product_media: [],
-        // product_filter: 'all',
-		// filters :'all',
 		totalPrice: 0,
 		totalQuantity: 0,
+		// productindex:0
 	},
 
 	created() {
-
-		this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseInt(localStorage.getItem('totalPrice')) : 0;
+		this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseFloat(localStorage.getItem('totalPrice')) : 0;
 		this.totalQuantity = localStorage.getItem('totalQuantity') !== null ? parseInt(localStorage.getItem('totalQuantity')) : 0;
-
 		localStorage.getItem('totalQuantity');
 		localStorage.getItem('totalPrice');
-
+		localStorage.getItem('productindex');
 	},
 
 	computed: {
 		title() {
 			return this.brand + " " + this.appName
-		},
-		cart() {
-			return this.shoppingCart = this.products.filter(product => product.quantity > 0)
 		},
 	},
 
@@ -79,119 +87,203 @@ const app = new Vue({
          * @returns void
          */
 
-        loadProducts(){
-            axios.get('/api/products')
-            .then((response) =>{
-                this.products = response.data.data;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        },
+        // loadProduct(){
+        //     axios.get('/api/products')
+        //     .then((response) =>{
+        //         this.products = response.data.data;
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     });
+        // },
 
-		loadProductMedia(){
-            axios.get('/api/product_media')
-            .then((response) =>{
-                this.product_media = response.data.data;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        },
+		// loadProductMedia(){
+        //     axios.get('/api/product_media')
+        //     .then((response) =>{
+        //         this.product_media = response.data.data;
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     });
+        // },
 
+		// loadProductDiscount(){
+        //     axios.get('/api/product_discounts')
+        //     .then((response) =>{
+        //         this.product_discounts = response.data.data;
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     });
+        // },
+		
+		// loadProductHasDiscount(){
+		// 	axios.get('/api/product_has_discounts')
+		// 	.then((response) =>{
+		// 		this.product_has_discounts = response.data.data;
+		// 	})
+		// 	.catch(function(error){
+		// 		console.log(error);
+		// 	});
+		// },
 
-		sale30() {
-			this.products.forEach(product => {
-				if (product.onSale30) {
-					product.newPrice30 = product.price - (product.price * 30 / 100)
-				} else {
-					product.price = product.price
-				}
+        // loadProductCategorie(){
+        //     axios.get('/api/product_categories')
+        //     .then((response) =>{
+        //         this.product_categories = response.data.data;
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     });
+        // },
+
+        // loadProductHasCategorie(){
+        //     axios.get('/api/product_has_categories')
+        //     .then((response) =>{
+        //         this.product_has_categories = response.data.data;
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     });
+        // },
+
+		// loadProductStock(){
+		// 	axios.get('/api/product_stocks')
+		// 	.then((response) =>{
+		// 		this.product_stocks = response.data.data;
+		// 	})
+		// 	.catch(function(error){
+		// 		console.log(error);
+		// 	});
+		// },
+		loadAllproduct(){
+			axios.get('/api/allproducts')
+			.then((response) =>{
+				this.allproducts = response.data.data;
 			})
+			.catch(function(error){
+				console.log(error);
+			});
 		},
 
-		sale50() {
-			this.products.forEach(product => {
-				if (product.onSale50) {
-					product.newPrice50 = product.price - (product.price * 50 / 100)
-				} else {
-					product.price = product.price
-				}
-			})
-		},
-
-		addToCart(product, updateType) {
-			for (let i = 0; i < this.products.length; i++) {
-
-				if (this.products[i].id === product.id) {
-					if (updateType === 'substract') {
-						if (this.products[i].quantity !== 0) {
-
-							this.totalQuantity--
-
-							this.products[i].quantity--
-							this.products[i].stock++;
-
-							if (this.products[i].onSale30) {
-								this.totalPrice -= this.products[i].newPrice30
-							} else if (this.products[i].onSale50) {
-								this.totalPrice -= this.products[i].newPrice50
-							} else {
-								this.totalPrice -= this.products[i].price
-							}
-							this.shoppingCart = this.cart
-							localStorage.removeItem('shoppingCart');
-							localStorage.totalQuantity = this.totalQuantity
-							localStorage.totalPrice = this.totalPrice
-						}
-					} else {
-						this.products[i].quantity++
-						this.products[i].stock--;
+		addToCart(product) {
+			this.allproducts.forEach(item => {
+				if(item.id === product.id){
+					if(!this.shoppingCart.some(elem => elem.id === item.id)){
+						this.shoppingCart.push(item);
 						this.totalQuantity++;
-						this.shoppingCart = this.cart
+						item.quantity++;
+						item.stock--;
 
-						if (this.products[i].onSale30) {
-							this.totalPrice += this.products[i].newPrice30
-						} else if (this.products[i].onSale50) {
-							this.totalPrice += this.products[i].newPrice50
+						if (item.onsale30) {
+							this.totalPrice += (parseFloat(item.price))*30/100
+						} else if (item.onsale50) {
+							this.totalPrice += (parseFloat(item.price))*50/100
 						} else {
-							this.totalPrice += this.products[i].price
+							this.totalPrice += parseFloat(item.price);
 						}
 
-						localStorage.setItem('totalQuantity', this.totalQuantity)
-						localStorage.setItem('totalPrice', this.totalPrice)
+						localStorage.setItem('totalQuantity', this.totalQuantity);
+						localStorage.setItem('totalPrice', this.totalPrice);
+
+					}else{
+						this.shoppingCart.forEach(ele => {
+							if(ele.id === product.id){
+								ele.quantity++
+								ele.stock--;
+						this.totalQuantity++;
+						if (ele.onsale30) {
+							this.totalPrice += parseFloat(ele.price)*30/100;
+
+						} else if (ele.onsale50) {
+							this.totalPrice += parseFloat(ele.price)*50/100;
+
+						} else {
+							this.totalPrice += parseFloat(ele.price);
+						}
+						localStorage.setItem('totalQuantity', this.totalQuantity);
+						localStorage.setItem('totalPrice', parseFloat(this.totalPrice));
+					}
+				})
 					}
 				}
-			}
+			})
+		},
+		
+		updateItem(product, index, updateType){
+			this.shoppingCart.forEach(cart =>{
+				if(cart.id === product.id){
+					if(updateType === 'add'){
+						
+						cart.quantity++;
+						cart.stock--;
+						this.totalQuantity++;
+						if(cart.onsale30){
+							this.totalPrice += parseFloat(cart.price*30/100);
+						}else if(cart.onsale50){
+							this.totalPrice += parseFloat(cart.price*50/100);
+						}else{
+							this.totalPrice += parseFloat(cart.price);
+						}
+						localStorage.setItem('totalQuantity', this.totalQuantity)
+						localStorage.setItem('totalPrice', this.totalPrice)
+						
+					}else{
+						if(cart.quantity>1){
+							this.totalQuantity--;
+							cart.quantity--;
+							cart.stock++;
+							if(cart.onsale30){
+								this.totalPrice -= cart.price*30/100;
+							}else if(cart.onsale50){
+								this.totalPrice -= cart.price*50/100;
+							}else{
+								this.totalPrice -= cart.price;
+							}
+						}else{
+							this.shoppingCart.splice(index, 1);
+							this.totalQuantity--;
+							cart.quantity--;
+							cart.stock++;
+							if(cart.onsale30){
+								this.totalPrice -= cart.price*30/100;
+							}else if(cart.onsale50){
+								this.totalPrice -= cart.price*50/100;
+							}else{
+								this.totalPrice -= cart.price;
+							}
+						}
+						localStorage.removeItem('shoppingCart');
+						localStorage.totalQuantity = this.totalQuantity
+						localStorage.totalPrice = this.totalPrice
+					}
+				}
+			})
 		},
 
-
 		removeAll() {
-			this.shoppingCart.length = this.cart.length = 0
+			this.shoppingCart.forEach(cart =>{
+				cart.stock+=cart.quantity;
+				cart.quantity = 0;
+			})
+			this.shoppingCart = [],
 			this.totalPrice = 0
 			this.totalQuantity = 0
 
 			localStorage.removeItem('totalQuantity');
 			localStorage.removeItem('totalPrice');
 			localStorage.removeItem('shoppingCart');
-
-			for (let k = 0; k < this.products.length; k++) {
-				if (this.products[k].quantity != 0) {
-					this.products[k].stock += this.products[k].quantity
-					this.products[k].quantity = 0
-				}
-			}
 		},
-
+		
 		removeItem(index) {
 			this.totalQuantity -= this.shoppingCart[index].quantity
 
-			if (this.shoppingCart[index].onSale30) {
-				this.totalPrice -= this.shoppingCart[index].newPrice30 * this.shoppingCart[index].quantity
-			} else if (this.shoppingCart[index].onSale50) {
-				this.totalPrice -= this.shoppingCart[index].newPrice50 * this.shoppingCart[index].quantity
+			if (this.shoppingCart[index].onsale30) {
+				this.totalPrice -= (this.shoppingCart[index].price*30/100)*this.shoppingCart[index].quantity
+			} else if (this.shoppingCart[index].onsale50) {
+				this.totalPrice -= (this.shoppingCart[index].price*50/100)*this.shoppingCart[index].quantity
 			} else {
-				this.totalPrice -= this.shoppingCart[index].price * this.shoppingCart[index].quantity
+				this.totalPrice -= this.shoppingCart[index].price*this.shoppingCart[index].quantity
 			}
 
 			this.shoppingCart[index].stock += this.shoppingCart[index].quantity
@@ -201,71 +293,46 @@ const app = new Vue({
 			localStorage.totalQuantity = this.totalQuantity
 			localStorage.totalPrice = this.totalPrice
 		},
-
-
-		// filter(){
-		// 	if(this.product_filter == 'all') {
-		// 		this.products.forEach(element => {
-		// 			element.show =true;
-		// 		})
-		// 	}
-		// 	if (this.product_filter == 'machiens') {
-		// 		this.products.forEach(element1 => {
-		// 			if (!element1.category == 'machine'){
-		// 				element1.show = false;
-		// 			}
-		// 		})
-		// 	}
-		// 		if (this.product_filter == 'beans') {
-		// 			this.products.forEach(element2 => {
-		// 				if (!element2.category == 'beans'){
-		// 					element2.show = false;
-		// 				}
-		// 			})
-		// 		}
-
-		// 		if (this.product_filter == 'cups') {
-		// 			this.products.forEach(element3 => {
-		// 				if (!element3.category == 'cup'){
-		// 					element3.show = false;
-		// 				}
-		// 			})
-		// 		} 
-		// 	}					
-
+		detail(index){
+			this.productindex == index;
+				localStorage.setItem('productindex', index);
+				}
 	},
-
+	
 	mounted() {
 
 
 		if (localStorage.shoppingCart) {	
 			this.shoppingCart = JSON.parse(localStorage.shoppingCart);
 		}
-		this.products.forEach(productItem => {
-			this.shoppingCart.forEach(cartItem => {
-				if (productItem.id === cartItem.id) {
-					productItem.quantity = cartItem.quantity
-					productItem.stock = cartItem.stock
-				}
-			})
-		})
 
-
-		this.$on('update-cart', (product, updateType) => {
-			this.addToCart(product, updateType)
+		this.$on('update-cart', (product) => {
+			this.addToCart(product)
 		})
 
 		this.$on('remove', () => {
 			this.removeAll()
 		})
-
 		this.$on('remove-product', (index) => {
 			this.removeItem(index)
 		})
 
-		this.loadProducts();
-		this.loadProductMedia();
+		this.$on('update-product', (product, index, updateType) => {
+			this.updateItem(product, index, updateType)
+		})
+		this.$on('detail', (index) => {
+			this.detail(index)
+		})
 
+
+		// this.loadProduct();
+		// this.loadProductMedia();
+		// this.loadProductDiscount();
+		// this.loadProductHasDiscount();
+		// this.loadProductCategorie();
+		// this.loadProductHasCategorie();
+		// this.loadProductStock();
+		this.loadAllproduct();
 
 	},
 
@@ -278,6 +345,7 @@ const app = new Vue({
 			deep: true
 		},
     },
+	
 });
 Vue.config.devtools = true
 Vue.config.productionTip = false

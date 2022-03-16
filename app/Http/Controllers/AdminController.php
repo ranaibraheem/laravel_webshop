@@ -10,24 +10,24 @@ class AdminController extends Controller
 
 
     public function index(){
-        return view('admin/index');
+        return view('admin/users/index');
     }
 
-    public function products(){
-        return view('admin/products');
-    }
+    // public function products(){
+    //     return view('admin/products');
+    // }
 
-    public function category(){
-        return view('admin/category');
-    }
+    // public function category(){
+    //     return view('admin/category');
+    // }
 
-    public function media(){
-        return view('admin/media');
-    }
+    // public function media(){
+    //     return view('admin/media');
+    // }
 
-    public function stock(){
-        return view('admin/stock');
-    }
+    // public function stock(){
+    //     return view('admin/stock');
+    // }
 
 
 }

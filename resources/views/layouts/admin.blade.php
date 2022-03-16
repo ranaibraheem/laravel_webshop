@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,90 +14,44 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
+</head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        @include('layouts.header_welcome')
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
 
-                    </ul>
+        <div class="admin_menu">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+            <div class="admin_btn"><a href="{{ route('all.users') }}" class="btn btn-primary">All Users</a></div>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+            <div class="admin_btn"><a href="{{ route('all.product') }}" class="btn btn-primary">Products</a></div>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+            <div class="admin_btn"><a href="{{ route('all.category') }}" class="btn btn-primary">All Categories</a></div>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+            <div class="admin_btn"><a href="#" class="btn btn-primary">Add Multi Images</a></div>
 
-<div class="admin_menu">
+            <!-- <div class="admin_btn"><a href="{{ url('/admin/media') }}" class="btn btn-primary">Media</a></div> -->
 
-        <div class="sideBtn"><a href="{{ url('/admin/products') }}" class="btn btn-primary">Products</a></div>
+            <!-- <div class="admin_btn"><a href="{{ url('/admin/stock') }}" class="btn btn-primary">Stock</a></div> -->
 
-        <div class="sideBtn"><a href="{{ url('/admin/category') }}" class="btn btn-primary">Categories</a></div>
+            <div class="admin_btn"><a href="{{ route('all.users') }}" class="btn btn-primary">Back</a></div>
 
-        <div class="sideBtn"><a href="{{ url('/admin/media') }}" class="btn btn-primary">Media</a></div>
+            <div class="admin_btn"><a href="{{ url('/') }}" class="btn btn-primary">Home</a></div>
+        </div>
 
-        <div class="sideBtn"><a href="{{ url('/admin/stock') }}" class="btn btn-primary">Stock</a></div>
-
-        <div class="sideBtn"><a href="{{ url('/admin/index') }}" class="btn btn-primary">Back</a></div>
-        
-        <div class="sideBtn"><a href="{{ url('/') }}" class="btn btn-primary">Home</a></div>
-</div>
-
-<div class="admin_content">
-        <main class="py-4">
-            @yield('content')
-            hello
-        </main>
-</div>
-
+        <div class="admin_content">
+            <main>
+                @yield('content')
+            </main>
+        </div>
+    </div>
 </body>
+
 </html>

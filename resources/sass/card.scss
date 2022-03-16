@@ -1,4 +1,4 @@
-.card {
+.product_card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.411);
     transition: 0.3s;
     width: 20rem;
@@ -74,7 +74,7 @@ img {
     height: 90px;
 }
 
-.card:hover {
+.product_card:hover {
     box-shadow: 0 60px 100px 0 rgba(36, 20, 20, 0.918);
     background-color: rgb(65, 37, 2);
     color: rgb(245, 240, 216);
@@ -91,7 +91,7 @@ h5 {
     color: black;
 }
 
-.card:hover h5 {
+.product_card:hover h5 {
     color: white;
 }
 

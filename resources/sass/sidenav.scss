@@ -1,15 +1,25 @@
 .sidenav {
+    // display: flex;
     height: auto;
     width: 200px;
     left: 0;
     background-color: #fff1e69d;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     padding-top: 20px;
     border-radius: 10px;
     margin-right: 3rem;
+    justify-content: space-around
 }
 
 .sideBtn {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.wimg {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
 }

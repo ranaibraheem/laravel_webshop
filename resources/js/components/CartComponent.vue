@@ -28,33 +28,35 @@
                             <span id="shopping">Name:</span> {{product.name}}<br> 
                             <span id="shopping">Quantity:</span>({{product.quantity}})<br>
                             <span id="shopping">Price:</span>
-                            <span v-if="product.onSale30">
-                                <span class="newPrice30"> <b>$ {{(product.price - (product.price * 30 / 100))*product.quantity}}</b>
+                            <span v-if="product.onsale30">
+                                <span class="newPrice30"> <b>$ {{(product.price - product.price*30/100)*product.quantity}}</b>
                                     <span id="saleBorder">Sale 30%</span>
                                 </span>
                             </span>
-                            <span v-else-if="product.onSale50">
-                                <span class="newPrice50"> <b>$ {{(product.price - (product.price * 50 / 100))*product.quantity}}</b>
+                            <span v-else-if="product.onsale50">
+                                <span class="newPrice50"> <b>$ {{(product.price - product.price*50/100)*product.quantity}}</b>
                                     <span id="saleBorder"> Sale 50%</span>
                                 </span>
                             </span>
                             <span v-else><b>$ {{product.price*product.quantity}}</b></span><br>
-                            <span>
-                                <span id="shopping">Delete:</span>
-                                <i class="fa fa-trash-o" id="deletBtn" @click="removeProduct(index)"></i>
-                            </span>
                             <div class="col-md-12">
-                                <img :src="'/public/images/webshop/' + product.image" width="40%">
+                                <img :src="'/images/webshop/' + product.image" width="40%">
                                 <span>&#x1F6D2;</span>
-                                <button class="addToCart btn btn-primary" @click="updateCart(product,'substract')"
+                                
+                                <button class="addToCart btn btn-primary" @click="updateProduct(product,index,'substract')"
                                     :disabled="product.stock === 0 && product.quantity===0"
                                     :class="{disabledButton: product.stock===0 && product.quantity===0}">-
                                 </button>
                                 <span>{{product.quantity}}</span>
-                                <button class=" addToCart btn btn-primary" @click="updateCart(product,'add')"
+                                <button class=" addToCart btn btn-primary" @click="updateProduct(product, index, 'add')"
                                     :disabled="product.stock === 0" :class="{disabledButton: product.stock === 0}">+
                                 </button>
-                            </div><hr>
+                                <span>
+                                <i class="fa fa-trash-o" id="deletBtn" @click="removeProduct(index)"></i>
+                                </span>
+
+                            </div>
+                            <hr>
                         </li>
                     </ul>
                     <h5 class="modal-title" id="staticBackdropLabel">Total:</h5>
@@ -77,18 +79,32 @@
 </div>
 </span>
 </template>
+
 <script>
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadProducts();
-            this.loadProductMedia();
+            // this.loadProduct();
+            // this.loadProductMedia();
+            // this.loadProductDiscount();
+            // this.loadProductHasDiscount();
+            // this.loadProductCategorie();
+            // this.loadProductHasCategorie();
+            // this.loadProductStock();
+            this.loadAllproduct();
+
 
         },
         data() {
             return {
-                products:[],
-                product_media: [],
+                // products:[],
+                // product_media: [],
+                // product_discounts: [],
+                // product_has_discounts: [],
+                // product_categories: [],
+                // product_has_ca-0potegories: [],
+                // product_stocks: [],
+                allproducts: [],
             }
         },
         props: {
@@ -100,30 +116,89 @@
                 default: 0,
             },
             totalPrice: {
-                type: Number,
+                type: parseFloat(Number),
                 default: 0,
             },
         },
 
 
-        created() {  
+        created() {
         },
 
         methods: {
-            loadProducts(){
-                axios.get('/api/products')
-                .then((response) =>{
-                    this.products = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProduct(){
+            //     axios.get('/api/products')
+            //     .then((response) =>{
+            //         this.products = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-            loadProductMedia(){
-                axios.get('/api/product_media')
+            // loadProductMedia(){
+            //     axios.get('/api/product_media')
+            //     .then((response) =>{
+            //         this.product_media = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductDiscount(){
+            //     axios.get('/api/product_discounts')
+            //     .then((response) =>{
+            //         this.product_discounts = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductHasDiscount(){
+            //     axios.get('/api/product_has_discounts')
+            //     .then((response) =>{
+            //         this.product_has_discounts = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductCategorie(){
+            //     axios.get('/api/product_categories')
+            //     .then((response) =>{
+            //         this.product_categories = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductHasCategorie(){
+            //     axios.get('/api/product_has_categories')
+            //     .then((response) =>{
+            //         this.product_has_categories = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+
+            // loadProductStock(){
+            //     axios.get('/api/product_stocks')
+            //     .then((response) =>{
+            //         this.product_stocks = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+            loadAllproduct(){
+                axios.get('/api/allproducts')
                 .then((response) =>{
-                    this.product_media = response.data.data;
+                    this.allproducts = response.data.data;
                 })
                 .catch(function(error){
                     console.log(error);
@@ -138,9 +213,13 @@
                 this.$root.$emit('remove-product', index)
             },
 
-            updateCart(product, updateType) {
-                this.$root.$emit('update-cart', product, updateType)
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
             },
+            updateProduct(product, index, updateType) {
+                this.$root.$emit('update-product', product,index, updateType)
+            },
+
         },
     }
 </script>
