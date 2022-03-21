@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class DetailController extends Controller
 {
     public function index($id){
-        $allproducts =   Detail::all();
+        $products =   Detail::all();
         return view('detail',
         [
-            'allproducts' => $allproducts
+            'products' => $products
         ],
         [
             'id' => $id

@@ -1,18 +1,63 @@
 h1 {
-    color: rgb(245, 240, 216);
+    color: #370617;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     font-size: 2em;
     padding: 1rem;
 }
 
-.header_nav {
+// .header_admin_nav {
+//     border: lightgrey solid 2px;
+//     background-color: rgb(110, 77, 36);
+//     font-weight: bold;
+//     border-radius: 20px;
+//     margin: 1em;
+// }
+.header_products_nav {
     border: lightgrey solid 2px;
     background-color: rgb(110, 77, 36);
     font-weight: bold;
     border-radius: 20px;
     margin: 1em;
 }
+
+.header_nav {
+    // border: lightgrey solid 2px;
+    // background-color: rgb(235,225, 210, 0.3);
+    font-weight: bold;
+    // border-radius: 20px;
+    // margin: 1em;
+}
+
+// .header_welcome_nav {
+//     border: lightgrey solid 2px;
+//     background-color: rgb(110, 77, 36);
+//     background: url('/images/background.jpg');
+//     font-weight: bold;
+//     border-radius: 20px;
+//     margin: 1em;
+//     height: 16em;
+// }
+
+// .header_products_nav {
+//     border: lightgrey solid 2px;
+//     background-color: rgb(110, 77, 36);
+//     background: url('/images/background.jpg');
+//     font-weight: bold;
+//     border-radius: 20px;
+//     margin: 1em;
+//     height: 16em;
+// }
+
+// .header_admin_nav {
+//     border: lightgrey solid 2px;
+//     background-color: rgb(110, 77, 36);
+//     background: url('/images/background.jpg');
+//     font-weight: bold;
+//     border-radius: 20px;
+//     margin: 1em;
+//     height: 16em;
+// }
 
 .basket {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.411);

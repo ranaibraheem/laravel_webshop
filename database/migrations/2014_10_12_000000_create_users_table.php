@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
             $table->timestamps();
             $table->softDeletes();
 
@@ -30,20 +31,17 @@ return new class extends Migration
             $table->foreign('updated_by')->references('id')->on('users');
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->foreign('deleted_by')->references('id')->on('users');
-
         });
+
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
-            
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
             $table->string('street');
             $table->string('house_number');
-            $table->string('postal_code');
+            $table->string('zip_code');
             $table->string('city');
-
-            $table->enum('address_type', ['deliver', 'invoice', 'other'])->default('deliver');
+            $table->string('country');
 
             $table->timestamps();
             $table->softDeletes();
@@ -61,8 +59,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('phone_number');
-            $table->enum('phone_number_type', ['home', 'work', 'other'])->default('home');
+            $table->string('phone_number1');
+            $table->string('phone_number2');
 
             $table->timestamps();
             $table->softDeletes();
@@ -75,8 +73,8 @@ return new class extends Migration
             $table->foreign('deleted_by')->references('id')->on('users');
         });
 
+}
 
-    }
 
     /**
      * Reverse the migrations.

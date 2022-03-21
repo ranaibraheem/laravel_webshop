@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class UserPhoneSeeder extends Seeder
+class UserAddressesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,10 @@ class UserPhoneSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\UserPhone::factory(10)->create();
+        /**
+         * User table seeder is in PermissionTableSeeder
+         */
+
+        \App\Models\UserAddresses::factory(10)->create();
     }
 }

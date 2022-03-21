@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('allproducts', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
@@ -33,25 +33,6 @@ return new class extends Migration
             $table->boolean('onsale50');
 
             $table->boolean('showstatus');
-
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users');
-            $table->unsignedBigInteger('deleted_by')->nullable();
-            $table->foreign('deleted_by')->references('id')->on('users');
-        });
-
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('info')->nullable();
-            $table->string('price');
-            $table->decimal('vat');
 
             $table->timestamps();
             $table->softDeletes();
