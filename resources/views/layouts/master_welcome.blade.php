@@ -22,12 +22,17 @@
 </head>
 
 <body class="welcome_body_img">
-    <!-- <div id="app"> -->
+    <div id="app">
     @include('layouts.header_welcome')
     
 
     @yield('content')
-    <!-- </div> -->
+
+    @include('layouts.footer')
+     </div>
+
+    @yield('scripts')
+   
 </body>
 
 </html>

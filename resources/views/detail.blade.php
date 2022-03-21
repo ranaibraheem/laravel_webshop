@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="products block">
         {{-- @foreach ($allproducts as $item)
             @if($item->id == $id)
@@ -42,6 +43,5 @@
     <h2>Here is the detail page</h2> --}}
     <detail-component ref="DetailComponent" :productindex="productindex"></detail-component>
     </div>
-
 @endsection
 

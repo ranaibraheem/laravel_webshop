@@ -8,8 +8,7 @@ use App\Http\Controllers\Api\AllproductController;
 use App\Http\Controllers\DetailController;
 use App\Models\Allproduct;
 use App\Models\User;
-
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,14 +24,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/checkout', function () {
+    return view('checkout');
+});
+
+Route::get('/webshop', function () {
+    return view('webshop');
+});
+
+
 Auth::routes();
 
-
-
-
-
-
-Route::get('/products/all', [ProductController::class, 'index'])->name('all.product');
+// Route::get('/products/all', [ProductController::class, 'index'])->name('all.product');
 
 //ADMIN ROUTES
 Route::get('/admin/index', [AdminController::class, 'index'])->name('home.admin');
@@ -61,12 +64,19 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 
 
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
 
 Route::view('/products',['home']);
+Route::view('/machines', ['machines']);
+Route::view('/beans', ['beans']);
+Route::view('/cups', ['cups']);
+Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
+Route::view('/{any}', ['welcome']);
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
@@ -75,10 +85,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', funct
     return view('admin.users.index', compact('users'));
 })->name('all.users');
 
-// Route::get('/detail/{id}', function ($id){
-//     return view("detail", [
-//         'id' => $id
-//     ]);
-// });
-// Route::get('/allproducts', [AllproductController::class, 'index'])->name('all.products');
-Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');

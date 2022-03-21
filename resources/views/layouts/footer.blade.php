@@ -1,4 +1,14 @@
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" id="footer">
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017–2021 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+
+<!-- <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" id="footer">
     <p class="col-md-4 mb-0 text-muted">&copy; 2021 Cherkkoffie</p>
     <ul class="nav col-md-4 justify-content-end">
         <li class="nav-item">
