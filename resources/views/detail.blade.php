@@ -1,12 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.master_head')
 @section('content')
 
-    <div class="products block">
+
+
+<div class="products block">
         {{-- @foreach ($allproducts as $item)
             @if($item->id == $id)
-                <img src="/images/webshop/{{($item->image)}}" class="col-5" height="800px">
-                <div class="col-5" id="detail">
-                    <h3><b>Name: </b>{{$item->name}}</h3>
+            
+            <div><img src="/images/webshop/{{($item->image)}}" height="800px"></div>
+                
+                <div id="detail">
+                   
+                    <div class="detail_text"><b>Name: </b>{{$item->name}}</div>
                     <h3>{{$item->info}}</h3><hr>
                     <h3><b>Description: </b>{{$item->description}}</h3><hr>
 
@@ -35,6 +40,7 @@
                     <h3>&#x1F6D2;
                        <button class="addToCart btn btn-primary" @click="updateCart($item)" id="app"><h3>Order</h3></span></button>
                     </h3>
+                    </div>
                 </div>
             @endif
         @endforeach --}}
@@ -43,5 +49,7 @@
     <h2>Here is the detail page</h2> --}}
     <detail-component ref="DetailComponent" :productindex="productindex"></detail-component>
     </div>
+
+
 @endsection
 

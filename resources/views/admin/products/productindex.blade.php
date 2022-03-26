@@ -1,12 +1,11 @@
-@extends('layouts.admin')
+@extends('admin.home')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Welcome <b>{{ Auth::user()->name }} </b>,  you are logged in!
-                   <b style="float:right;">Total Users <span class="badge bg-danger">{{ count($users) }}</span></b> 
+                <div class="card-header">Welcome <b>{{ Auth::user()->first_name }} </b>,  you are logged in!
                    </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -22,20 +21,20 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">SL No</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Created At</th>
+                            <th scope="col">Info</th>
+                            <th scope="col">Price</th>
                         </tr>
                     </thead>
                     <tbody>
                             @php($i = 1)
-                            @foreach($users as $user)
+                            @foreach($products as $product)
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->info }}</td>
+                            <td>{{ $product->price }}</td>
                         </tr>
                         @endforeach
 

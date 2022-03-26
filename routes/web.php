@@ -28,9 +28,12 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/webshop', function () {
-    return view('webshop');
+Route::get('/contact', function () {
+    return view('contact');
 });
+// Route::get('/webshop', function () {
+//     return view('webshop');
+// });
 
 
 Auth::routes();
@@ -38,8 +41,13 @@ Auth::routes();
 // Route::get('/products/all', [ProductController::class, 'index'])->name('all.product');
 
 //ADMIN ROUTES
-Route::get('/admin/index', [AdminController::class, 'index'])->name('home.admin');
-Route::get('/admin/products', [AdminController::class, 'products']);
+Route::get('/admin/', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('users');
+Route::get('/admin/products', [ProductController::class, 'showProducts'])->name('products');
+Route::get('/admin/category', [CategoryController::class, 'showCategories'])->name('categories');
+
+
+
 
 //CATEGORY ROUTES
 // Route::get('/', [CategoryController::class, 'index']);
@@ -53,20 +61,24 @@ Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 // PRODUCTS ROUTE
-// Route::get('/products/all', [ProductController::class, 'AllProduct'])->name('all.product');
-// Route::post('/products/add', [ProductController::class, 'StoreProduct'])->name('store.product');
-// Route::get('/products/edit/{id}', [ProductController::class, 'Edit']);
-// Route::post('/products/update/{id}', [ProductController::class, 'Update']);
-// Route::get('/products/delete/{id}', [ProductController::class, 'Delete']);
+ Route::get('/products/all', [ProductController::class, 'index'])->name('product');
+ Route::post('/products/add', [ProductController::class, 'StoreProduct'])->name('store.product');
+ Route::get('/products/edit/{id}', [ProductController::class, 'Edit']);
+ Route::post('/products/update/{id}', [ProductController::class, 'Update']);
+ Route::get('/products/delete/{id}', [ProductController::class, 'Delete']);
 
-// Route::get('/admin/media', [AdminController::class, 'media']);
-// Route::get('/admin/stock', [AdminController::class, 'stock']);
+ Route::get('/admin/media', [AdminController::class, 'media']);
+ Route::get('/admin/stock', [AdminController::class, 'stock']);
 
 
 
-// Route::get('/home', function () {
-//     return view('home');
-// });
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/products', function () {
+    return view('webshop');
+});
 
 
 Route::view('/products',['home']);
@@ -74,9 +86,6 @@ Route::view('/machines', ['machines']);
 Route::view('/beans', ['beans']);
 Route::view('/cups', ['cups']);
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
-Route::view('/{any}', ['welcome']);
-
-
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
@@ -84,4 +93,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', funct
 
     return view('admin.users.index', compact('users'));
 })->name('all.users');
+
+
+Route::view('/{any}', ['welcome']);
 

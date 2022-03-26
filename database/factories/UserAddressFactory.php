@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserAddressFactory extends Factory
 {
@@ -17,10 +18,12 @@ class UserAddressFactory extends Factory
     public function definition()
     {
         return [
-            'street' => $this->faker->streetAddress(),
-            'house_number' => $this->faker->numberBetween(0,100),
-            'postal_code' => $this->faker->postcode(),
-            'city' => $this->faker->city(),
-            ];
+            'user_id'       => \App\Models\User::inRandomOrder()->first()->id,
+            'street'        => $this->faker->address(),
+            'house_number'  => $this->faker->randomDigitNotNull(),
+            'zip_code'      => $this->faker->postcode(),
+            'city'          => $this->faker->city(),
+            'country'       => $this->faker->country(),
+        ];
     }
 }

@@ -1,8 +1,13 @@
+<!-- user is redirected to the products when NOT logged in -->
 @extends('layouts.master_head')
 
 @section('content')
-@include('layouts.header_welcome_and_products')
 
-<h1>THIS SECTION IS SAVED FOR RENDERING USER SIDE PRODUCTS</h1>
+
+@include('layouts.menu_buttons')
+
+
+<products-component ref="productsComponent" :machine="machine" :bean="bean" :cup="cup" :machines="machines" :beans="beans" :cups="cups"></products-component> 
+
 
 @endsection

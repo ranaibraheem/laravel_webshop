@@ -6,6 +6,10 @@ h1 {
     padding: 1rem;
 }
 
+.nav-item {
+    font-size: 20px;
+}
+
 // .header_admin_nav {
 //     border: lightgrey solid 2px;
 //     background-color: rgb(110, 77, 36);
@@ -90,4 +94,8 @@ h1 {
 
 .soldOut {
     color: red;
+}
+
+.nav-link {
+    font-weight: bold;
 }
