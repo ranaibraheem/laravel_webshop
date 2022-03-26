@@ -1,8 +1,8 @@
-@extends('layouts.master_welcome')
+@extends('layouts.master_head')
 
 @section('content')
     
-    <div id="checkout" class="container">
+    {{-- <div id="checkout" class="container">
       
         <div class="py-5 text-center">
           <h2>Checkout form</h2>
@@ -12,7 +12,7 @@
           <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
               <span>Your cart</span>
-              <span class="badge bg-primary rounded-pill">3</span>
+              <span class="badge checkout_badge rounded-pill">3</span>
             </h4>
             <ul class="list-group mb-3">
               <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -52,7 +52,7 @@
             <form class="card p-2">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Promo code">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
+                <button type="submit" class="btn btn_redeem">Redeem</button>
               </div>
             </form>
           </div>
@@ -198,16 +198,26 @@
     
               <hr class="my-4">
     
-              <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+              <div class="submit_button row">
+              <div class="col-md-5">
+              <button class="btn-primary" type="submit">Continue to checkout</button>
+              </div>
+              </div>
             </form>
           </div>
         </div>
     
     
-    </div>
-    
-    
-        
+    </div> --}}
+    {{-- <form>
+      <input type="button" value="Go back!" onclick="history.back()" class="btn btn-primary">
+     </form> --}}
+     <a class="btn btn-primary" href="/products">Go back!</a>
+        @if(Auth::check())
+       <checkout-component :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice" :total-price-no-sale="totalPriceNoSale" :user="{{Auth::user()}}"></checkout-component> 
+       @else
+       <checkout-component :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice" :total-price-no-sale="totalPriceNoSale" :user="false"></checkout-component>
+        @endif
         @endsection
     @section('scripts')
           <script src="{{ asset('/checkout.js') }}"></script>

@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Models\Product;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\ProductCategory;
 
 class AdminController extends Controller
 {
 
 
     public function index(){
-        return view('admin/users/index');
+        $users=   User::all();
+        $product= Product::all();
+        $category= ProductCategory::all();
+        return view('admin/home',['users' => $users, 'product' => $product, 'category' => $category]);
     }
 
-    // public function products(){
-    //     return view('admin/products');
-    // }
+    public function showUsers(){
+        $users= User::all();
+        return view('admin/users/userindex',['users' => $users]);
+    }
 
     // public function category(){
     //     return view('admin/category');
@@ -30,4 +36,4 @@ class AdminController extends Controller
     // }
 
 
-}
+};

@@ -11292,6 +11292,7 @@ body {
   padding: 0px;
   border: solid lightgrey 1px;
   background-image: url("/images/bodybg.jpg");
+  background-attachment: fixed;
 }
 
 .product_card {
@@ -11455,46 +11456,23 @@ h5, .h5 {
   background-color: rgba(82, 82, 82, 0.726) !important;
   border-style: solid !important;
   border-radius: 10px !important;
-  padding: 8rem;
   margin-left: 1rem;
 }
 
-#footer {
+.detail_text {
+  padding: 1rem;
+}
+
+.footer_container {
+  color: #370617;
+  background-color: #eae0d5;
+  border-radius: 1rem;
+  padding: 2rem;
+  padding-bottom: 4rem;
   bottom: 0;
-  height: 90px;
-  margin-top: 100px;
   margin-bottom: 0;
-  background-color: #f2e9e4;
-  border-radius: 10px;
-}
-
-.fa {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  font-size: 20px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 5px;
-  color: white;
-  border-radius: 10%;
-  display: inline-block;
-}
-
-.fa-facebook {
-  background: #3B5998;
-}
-
-.fa-twitter {
-  background: #55ACEE;
-}
-
-.fa-instagram {
-  background: #d55d92;
-}
-
-.nav-item {
-  font-size: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, .h1 {
@@ -11503,6 +11481,10 @@ h1, .h1 {
   text-align: center;
   font-size: 2em;
   padding: 1rem;
+}
+
+.nav-item {
+  font-size: 20px;
 }
 
 .header_products_nav {
@@ -11550,6 +11532,10 @@ h1, .h1 {
   color: red;
 }
 
+.nav-link {
+  font-weight: bold;
+}
+
 #homeNav {
   text-align: center;
   padding-top: 1rem;
@@ -11563,24 +11549,22 @@ h1, .h1 {
   opacity: 0.5;
 }
 
-#login {
+.auth {
   color: #370617;
   background-color: #eae0d5;
   border-radius: 1rem;
   padding: 2rem;
   padding-bottom: 4rem;
   margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
 }
 
-#register {
-  color: #370617;
-  background-color: #eae0d5;
-  border-radius: 1rem;
-  padding: 2rem;
-  padding-bottom: 4rem;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+.auth_space {
+  height: 11em;
+}
+
+.auth_space_email {
+  height: 14em;
 }
 
 .fixlink {
@@ -11749,10 +11733,6 @@ option {
     -ms-text-size-adjust: auto;
   }
 
-  #footer {
-    height: 90px;
-  }
-
   option {
     font-size: 0.5rem;
   }
@@ -11859,6 +11839,19 @@ body {
     padding: 4rem;
   }
 }
+.dropdown-item {
+  color: #cad2c5;
+  background-color: #414833;
+  border-color: #656d4a;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #2e401c;
+  background-color: #bfab67;
+  border-color: #656d4a;
+}
+
 .admin_menu {
   display: flex;
   justify-content: center;
@@ -11884,7 +11877,7 @@ svg:not(:root) {
 }
 
 .image-space {
-  height: 50em;
+  height: 70em;
 }
 
 .welcome_page {
@@ -11896,8 +11889,6 @@ svg:not(:root) {
   /* Background image doesn’t tile */
   background-repeat: no-repeat;
   /* Background image is fixed in the viewport so that it doesn’t move when the content’s height is greater than the image’s height */
-  background-attachment: fixed;
-  /* This is what makes the background image rescale based on the container’s size */
   background-size: cover;
   /* Set a background color that will be displayed while the background image is loading */
   background-color: #464646;
@@ -11920,6 +11911,18 @@ svg:not(:root) {
   -moz-user-select: none;
   -ms-user-select: none;
       user-select: none;
+}
+#checkout .submit_button {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+}
+#checkout .btn_redeem {
+  background-color: #414833;
+  color: aliceblue;
+}
+#checkout .checkout_badge {
+  background-color: #414833;
 }
 @media (min-width: 768px) {
   #checkout .bd-placeholder-img-lg {
@@ -12041,4 +12044,147 @@ svg:not(:root) {
   100% {
     opacity: 0;
   }
+}
+.fa {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 5px;
+  border-radius: 10%;
+  display: inline-block;
+}
+
+.icon-bar {
+  position: fixed;
+  top: 70%;
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar i:hover {
+  background-color: #656d4a;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.footer_links {
+  color: #370617;
+}
+
+.title_forms {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: #370617;
+  font-size: 30px;
+}
+
+/* Style inputs, select elements and textareas */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  width: 130px;
+}
+
+.submit_button {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+}
+
+/* Style the container */
+.contact_container {
+  border-radius: 5px;
+  color: #370617;
+  background-color: #eae0d5;
+  border-radius: 1rem;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.auth {
+  color: #370617;
+  background-color: #eae0d5;
+  border-radius: 1rem;
+  padding: 2rem;
+  padding-bottom: 4rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.title_products {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: #370617;
+  font-size: 30px;
+  margin-top: 2em;
 }

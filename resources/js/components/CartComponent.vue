@@ -7,7 +7,7 @@
                     <div class="cart">
                         <span class="total-quantity">{{totalQuantity}}</span>
                     </div>
-                </div>
+                </div>  
             </span>
         </button>
         <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -29,16 +29,16 @@
                                 <span id="shopping">Quantity:</span>({{product.quantity}})<br>
                                 <span id="shopping">Price:</span>
                                 <span v-if="product.onsale30">
-                                    <span class="newPrice30"> <b>$ {{(product.price - product.price*30/100)*product.quantity}}</b>
+                                    <span class="newPrice30"> <b>$ {{((product.price - product.price*30/100)*product.quantity).toFixed(2)}}</b>
                                         <span id="saleBorder">Sale 30%</span>
                                     </span>
                                 </span>
                                 <span v-else-if="product.onsale50">
-                                    <span class="newPrice50"> <b>$ {{(product.price - product.price*50/100)*product.quantity}}</b>
+                                    <span class="newPrice50"> <b>$ {{((product.price - product.price*50/100)*product.quantity).toFixed(2)}}</b>
                                         <span id="saleBorder"> Sale 50%</span>
                                     </span>
                                 </span>
-                                <span v-else><b>$ {{product.price*product.quantity}}</b></span><br>
+                                <span v-else><b>$ {{(product.price*product.quantity).toFixed(2)}}</b></span><br>
                                 <div class="col-md-12">
                                     <img :src="'/images/webshop/' + product.image" width="40%">
                                     <span>&#x1F6D2;</span>
@@ -61,8 +61,14 @@
                         <h5 class="modal-title" id="staticBackdropLabel">Total:</h5>
                         <ul id="shoppingCart">
                             <li> <span id="shopping">Total Price:</span>
-                                <span><b>$ {{totalPrice}}</b></span>
+                                <span><b>$ {{totalPrice.toFixed(2)}}</b></span>
                             </li>
+                            <span style="color:grey">
+                                <small>Total before discount: $ {{totalPriceNoSale.toFixed(2)}}</small>
+                            </span><br>
+                            <span style="color:grey">
+                                <small>Total discount: $ {{(totalPriceNoSale - totalPrice).toFixed(2)}}</small>
+                            </span><hr>
                             <li><span id="shopping">Remove All:</span>
                                 <i class="fa fa-trash-o" id="deletBtn" @click="remove()" ></i>
                             </li>
@@ -70,7 +76,9 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Check Out</button>
+                       <a :href="'/checkout'">
+                            <button type="submit" class="btn btn-primary">Check Out</button>
+                        </a>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -83,12 +91,14 @@
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadproduct();
+            this.loadProduct();
+            this.loadUser();
         },
         
         data() {
             return {
                 products: [],
+                users: []
             }
         },
 
@@ -104,6 +114,10 @@
                 type: parseFloat(Number),
                 default: 0,
             },
+            totalPriceNoSale:{
+                type: parseFloat(Number),
+                default: 0,
+            }
             
         },
 
@@ -111,10 +125,19 @@
         },
 
         methods: {
-            loadproduct(){
+            loadProduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+            loadUser(){
+                axios.get('/api/users')
+                .then((response) =>{
+                    this.users = response.data.data;
                 })
                 .catch(function(error){
                     console.log(error);
@@ -131,6 +154,10 @@
             updateProduct(product, index, updateType) {
                 this.$root.$emit('update-product', product,index, updateType)
             },
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
+            },
+
 
         },
     }

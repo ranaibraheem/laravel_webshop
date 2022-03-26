@@ -1,12 +1,16 @@
 <template>
     <div>
         <div class="products block">
-            <h3>CUPS</h3>
+            <div class="title_products" ><p>CUPS</p></div>
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                 <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in cups" :key="product.id" v-show="product.showstatus">
-                    <a :href="imagePath + product.image">
-                        <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
-                    </a>
+                    <div v-for="productimage in product_media" :key="productimage.product_id">
+                        <span v-if="productimage.product_id === product.id">
+                            <a :href="imagePath + productimage.file_name">
+                                <img :src="imagePath+productimage.file_name" class="card-img-top" :alt="productimage.alt" >
+                            </a>
+                        </span>
+                    </div>
                     <div class="card-body">
                         <h5>{{product.name}}</h5><hr>
                         <p v-if="product.onsale30"><b>Sale 30%</b> 
@@ -38,15 +42,6 @@
     export default {
        
         props:{
-            machines:{
-                type: Array,
-                default:[]
-            },
-            beans:{
-                type: Array,
-                default:[]
-            },
-
             cups:{
                 type: Array,
                 default:[]
@@ -62,14 +57,15 @@
         },
 
         mounted() {
-            this.loadproduct();
+            this.loadProduct();
+            this.loadProductMedia();
         },
 
          created() {
         },
 
         methods: {
-            loadproduct(){
+            loadProduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;
@@ -79,6 +75,19 @@
                     console.log(error);
                 });
             },
+
+            loadProductMedia(){
+                axios.get('/api/product_media')
+                .then((response) =>{
+                    this.product_media = response.data.data;
+                    this.loading = false;
+
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
 
             updateCart(product) {
                 this.$root.$emit('update-cart', product)

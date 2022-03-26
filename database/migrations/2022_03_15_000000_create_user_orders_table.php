@@ -16,6 +16,8 @@ return new class extends Migration
             $table->decimal('total', 6,2);
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->foreign('payment_id')->references('id')->on('payment');
+            $table->timestamps();
+            $table->softDeletes();
 
         });
     }

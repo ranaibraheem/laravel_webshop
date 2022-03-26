@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UserAddressesSeeder extends Seeder
+class UserAddressSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,6 +19,6 @@ class UserAddressesSeeder extends Seeder
          * User table seeder is in PermissionTableSeeder
          */
 
-        \App\Models\UserAddresses::factory(10)->create();
+        \App\Models\UserAddress::factory(10)->create();
     }
 }

@@ -2,9 +2,9 @@
 <template>
     <div v-if="products[productindex]">
         <section>
-            <div class="products block">
+            <div class="products block" style="padding:2em">
                 <img :src="imagePath + products[productindex].image" class="col-5"  height="700px">
-                <div class="col-5" id="detail">
+                <div class="col-5" id="detail" style="padding:2em">
                     <h3><b>Name: </b> {{products[productindex].name}} </h3>
                     <h3> {{products[productindex].info}} </h3><hr>
                     <h4><b>Description: </b><br> {{products[productindex].description}}</h4><hr>

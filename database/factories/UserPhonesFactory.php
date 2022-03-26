@@ -18,6 +18,7 @@ class UserPhonesFactory extends Factory
     public function definition()
     {
         return [
+            'user_id'       => \App\Models\User::inRandomOrder()->first()->id,
             'phone_number1' => $this->faker->phoneNumber(),
             'phone_number2' => $this->faker->phoneNumber(),
         ];
