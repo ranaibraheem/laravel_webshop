@@ -6087,9 +6087,6 @@ __webpack_require__.r(__webpack_exports__);
     //         console.log('Error: ' + error);
     //     });
     // },
-    empty: function empty() {
-      this.orders.totalPrice = 0;
-    },
     remove: function remove() {
       this.$root.$emit('remove');
     }
@@ -30859,8 +30856,7 @@ var render = function () {
                                   return _vm.addOrder()
                                 },
                                 click: function ($event) {
-                                  _vm.remove()
-                                  _vm.empty()
+                                  return _vm.remove()
                                 },
                               },
                             },

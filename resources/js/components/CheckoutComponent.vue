@@ -215,7 +215,7 @@
                                 <input id="total" class="form-control" type="float" name="total" v-model="orders.totalPrice" value="total"><br>
                                 <label for="user_id" class="form-label">{{user.first_name}} id</label>
                                 <input id="user_id" class="form-control" type="number" name="user_id" v-model="orders.user_id" value="user_id"><br>
-                                <button class="btn btn-primary btn-lg" type="submit" @submit="addOrder()" @click="remove(); empty();">checkout order</button><hr>
+                                <button class="btn btn-primary btn-lg" type="submit" @submit="addOrder()" @click="remove();">checkout order</button><hr>
                             </form>
                         </span>
 
@@ -460,10 +460,7 @@
             //         console.log('Error: ' + error);
             //     });
             // },
-            empty(){
-                this.orders.totalPrice=0;
-            },
-
+            
             remove() {
                 this.$root.$emit('remove')
             },
