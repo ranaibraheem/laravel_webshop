@@ -18,7 +18,7 @@ class UserOrderResource extends JsonResource
         'id'            => $this->id,
         'user_id'       => $this->user_id,
         'total'         => $this->total,
-        'payment_id'    => $this->payment_id,
+        // 'payment_id'    => $this->payment_id,
         ];
     }
 }

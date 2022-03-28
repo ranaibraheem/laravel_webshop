@@ -5960,6 +5960,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     shoppingCart: {
@@ -5990,7 +6001,12 @@ __webpack_require__.r(__webpack_exports__);
       useremail: '',
       loading: true,
       firstN: "",
-      lastN: ""
+      lastN: "",
+      orders: {
+        totalPrice: (this.totalPrice * 1).toFixed(2),
+        user_id: this.user.id
+      },
+      success: false
     };
   },
   mounted: function mounted() {
@@ -6007,7 +6023,7 @@ __webpack_require__.r(__webpack_exports__);
       this.useremail = document.getElementById('email').value = this.user.email;
     }
 
-    ;
+    ; // this.addOrd  er();
   },
   created: function created() {},
   methods: {
@@ -6057,6 +6073,22 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    // addOrder(e){
+    //     // console.log(this.orders)
+    //     axios.post('/api/user_orders', this.orders)
+    //     .then((response) => {
+    //         console.log(response)
+    //         this.orders={};
+    //         this.success = ture;
+    // e.preventDefault();
+    //     })
+    //     .catch(error => {
+    //         console.log('Error: ' + error);
+    //     });
+    // },
+    empty: function empty() {
+      this.orders.totalPrice = 0;
     },
     remove: function remove() {
       this.$root.$emit('remove');
@@ -6679,7 +6711,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
                 _this3.totalPrice -= parseFloat(cart.price) - parseFloat(cart.price * 50 / 100);
                 _this3.totalPriceNoSale -= parseFloat(cart.price);
               } else {
-                _this3.totalPrice -= parseFlat(cart.price);
+                _this3.totalPrice -= parseFloat(cart.price);
                 _this3.totalPriceNoSale -= parseFloat(cart.price);
               }
             }
@@ -30477,7 +30509,7 @@ var render = function () {
                     _vm._m(2),
                     _vm._v(" "),
                     _c("strong", [
-                      _vm._v("$" + _vm._s(_vm.totalPrice.toFixed(2))),
+                      _vm._v("$" + _vm._s((_vm.totalPrice * 1).toFixed(2))),
                     ]),
                   ]
                 ),
@@ -30556,7 +30588,10 @@ var render = function () {
             _c("div", { staticClass: "row g-5" }, [
               _c(
                 "div",
-                { staticClass: "col-md-5 col-lg-4 order-md-last" },
+                {
+                  staticClass: "col-md-5 col-lg-4 order-md-last",
+                  staticStyle: { height: "100hh", position: "relative" },
+                },
                 [
                   _c(
                     "h4",
@@ -30700,6 +30735,140 @@ var render = function () {
                       _c("strong", [
                         _vm._v("$" + _vm._s(_vm.totalPrice.toFixed(2))),
                       ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "form-check",
+                      staticStyle: { position: "absolute", bottom: "0em" },
+                    },
+                    [
+                      _c(
+                        "form",
+                        {
+                          attrs: { method: "POST", action: "/api/user_orders" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.success,
+                                  expression: "success",
+                                },
+                              ],
+                              staticClass: "alert aler-success",
+                            },
+                            [_vm._v("Your Order is successfully submited")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label",
+                              attrs: { for: "total" },
+                            },
+                            [_vm._v("Total Price")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.orders.totalPrice,
+                                expression: "orders.totalPrice",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "total",
+                              type: "float",
+                              name: "total",
+                              value: "total",
+                            },
+                            domProps: { value: _vm.orders.totalPrice },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.orders,
+                                  "totalPrice",
+                                  $event.target.value
+                                )
+                              },
+                            },
+                          }),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label",
+                              attrs: { for: "user_id" },
+                            },
+                            [_vm._v(_vm._s(_vm.user.first_name) + " id")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.orders.user_id,
+                                expression: "orders.user_id",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "user_id",
+                              type: "number",
+                              name: "user_id",
+                              value: "user_id",
+                            },
+                            domProps: { value: _vm.orders.user_id },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.orders,
+                                  "user_id",
+                                  $event.target.value
+                                )
+                              },
+                            },
+                          }),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary btn-lg",
+                              attrs: { type: "submit" },
+                              on: {
+                                submit: function ($event) {
+                                  return _vm.addOrder()
+                                },
+                                click: function ($event) {
+                                  _vm.remove()
+                                  _vm.empty()
+                                },
+                              },
+                            },
+                            [_vm._v("checkout order")]
+                          ),
+                          _c("hr"),
+                        ]
+                      ),
                     ]
                   ),
                 ],
@@ -30955,20 +31124,6 @@ var render = function () {
                     _vm._m(20),
                     _vm._v(" "),
                     _c("hr", { staticClass: "my-4" }),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "w-100 btn btn-primary btn-lg",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.remove()
-                          },
-                        },
-                      },
-                      [_vm._v("Continue to checkout")]
-                    ),
                   ],
                   2
                 ),

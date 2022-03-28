@@ -177,7 +177,7 @@ const app = new Vue({
 							this.totalPriceNoSale += parseFloat(cart.price);
 						}else{
 							this.totalPrice += parseFloat(cart.price);
-							this.totalPriceNoSale += parseFloat(cart.price);
+							this.totalPriceNoSale +=parseFloat(cart.price);
 						}
 						localStorage.setItem('totalQuantity', this.totalQuantity)
 						localStorage.setItem('totalPrice', this.totalPrice)
@@ -213,7 +213,7 @@ const app = new Vue({
 								this.totalPriceNoSale -=parseFloat(cart.price);
 
 							}else{
-								this.totalPrice -= parseFlat(cart.price);
+								this.totalPrice -= parseFloat(cart.price);
 								this.totalPriceNoSale -= parseFloat(cart.price);
 							}
 						}
