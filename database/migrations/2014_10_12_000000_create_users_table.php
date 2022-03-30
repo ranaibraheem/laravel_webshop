@@ -33,45 +33,45 @@ return new class extends Migration
             $table->foreign('deleted_by')->references('id')->on('users');
         });
 
-        Schema::create('user_addresses', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('street');
-            $table->string('house_number');
-            $table->string('zip_code');
-            $table->string('city');
-            $table->string('country');
+        // Schema::create('user_addresses', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('user_id')->nullable();
+        //     $table->foreign('user_id')->references('id')->on('users');
+        //     $table->string('street');
+        //     $table->string('house_number');
+        //     $table->string('zip_code');
+        //     $table->string('city');
+        //     $table->string('country');
 
-            $table->timestamps();
-            $table->softDeletes();
+        //     $table->timestamps();
+        //     $table->softDeletes();
 
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users');
-            $table->unsignedBigInteger('deleted_by')->nullable();
-            $table->foreign('deleted_by')->references('id')->on('users');
-        });
+        //     $table->unsignedBigInteger('created_by')->nullable();
+        //     $table->foreign('created_by')->references('id')->on('users');
+        //     $table->unsignedBigInteger('updated_by')->nullable();
+        //     $table->foreign('updated_by')->references('id')->on('users');
+        //     $table->unsignedBigInteger('deleted_by')->nullable();
+        //     $table->foreign('deleted_by')->references('id')->on('users');
+        // });
 
-        Schema::create('user_phones', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+        // Schema::create('user_phones', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('user_id')->nullable();
+        //     $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('phone_number1');
-            $table->string('phone_number2');
+        //     $table->string('phone_number1');
+        //     $table->string('phone_number2');
 
-            $table->timestamps();
-            $table->softDeletes();
+        //     $table->timestamps();
+        //     $table->softDeletes();
 
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users');
-            $table->unsignedBigInteger('deleted_by')->nullable();
-            $table->foreign('deleted_by')->references('id')->on('users');
-        });
+        //     $table->unsignedBigInteger('created_by')->nullable();
+        //     $table->foreign('created_by')->references('id')->on('users');
+        //     $table->unsignedBigInteger('updated_by')->nullable();
+        //     $table->foreign('updated_by')->references('id')->on('users');
+        //     $table->unsignedBigInteger('deleted_by')->nullable();
+        //     $table->foreign('deleted_by')->references('id')->on('users');
+        // });
 
 }
 
