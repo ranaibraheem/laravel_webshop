@@ -29,7 +29,7 @@
 
         <div class="admin_menu">
 
-            <div class="admin_btn"><a href="{{ route('all.users') }}" class="btn btn-primary">All Users</a></div>
+            <div class="admin_btn"><a href="{{ route('index.user') }}" class="btn btn-primary">All Users</a></div>
 
             <div class="admin_btn"><a href="{{ route('all.product') }}" class="btn btn-primary">Products</a></div>
 

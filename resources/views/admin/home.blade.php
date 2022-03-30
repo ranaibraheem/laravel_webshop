@@ -29,11 +29,11 @@
 
         <div class="admin_menu">
 
-            <div class="admin_btn"><a href="{{ route('users') }}" class="btn btn-primary">All Users</a></div>
+            <div class="admin_btn"><a href="{{ route('index.users') }}" class="btn btn-primary">All Users</a></div>
 
-            <div class="admin_btn"><a href="{{ route('products') }}" class="btn btn-primary">Products</a></div>
+            <div class="admin_btn"><a href="{{ route('index.products') }}" class="btn btn-primary">Products</a></div>
 
-            <div class="admin_btn"><a href="{{ route('categories') }}" class="btn btn-primary">All Categories</a></div>
+            <div class="admin_btn"><a href="{{ route('index.categories') }}" class="btn btn-primary">All Categories</a></div>
 
             <div class="admin_btn"><a href="#" class="btn btn-primary">Add Multi Images</a></div>
 
@@ -49,6 +49,7 @@
         <div class="admin_content">
             <main>
             @yield('content')
+            @include('layouts.footer_admin')
             </main>
         </div>
     </div>

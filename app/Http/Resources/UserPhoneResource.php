@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserOrderResource extends JsonResource
+class UserPhoneResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,10 @@ class UserOrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-        'id'            => $this->id,
-        'user_id'       => $this->user_id,
-        'total'         => $this->total,
-        'total_quantity'=> $this->total_quantity,
-        // 'payment_id'    => $this->payment_id,
-        ];
+            'user_id'        => $this->user_id,
+            'phone_number1'  => $this->phone_number1,
+            'phone_number2'  => $this->phone_number2,
+                ];
+        
     }
 }

@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Product;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductResource;
+use App\Models\UserPhone;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserPhoneResource;
 
-class ProductController extends Controller
+class UserPhoneController extends Controller
 {
     public function index()
     {
-        return ProductResource::collection(Product::all());
+        return UserPhoneResource::collection(UserPhone::all());
         // $products =  ProductResource::collection(Product::all());
         // return view('products', compact('products'));
-
     }
-    // public function update(UpdateStockRequest $request)
-    // {
-          
-    // }
-
 }

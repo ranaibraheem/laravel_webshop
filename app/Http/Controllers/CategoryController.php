@@ -11,16 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
-    public function showCategories(){
+    public function index(){
         $categories= ProductCategory::all();
         return view('admin/categories/categoryindex',['categories' => $categories]);
-    }
-
-    public function AllCategory(){
-        $categories = ProductCategory::latest()->paginate(5);
-        $trashCat = ProductCategory::onlyTrashed()->latest()->paginate(3);
-
-        return view('admin.category.index', compact('categories','trashCat'));
     }
 
     public function AddCategory(Request $request){
