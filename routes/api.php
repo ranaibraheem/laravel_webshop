@@ -28,7 +28,10 @@ Route::get('/product_stocks', [App\Http\Controllers\Api\ProductStockController::
 Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index'])->name('users.all');
 Route::get('/user_orders', [App\Http\Controllers\Api\UserOrderController::class, 'index'])->name('users.orders');
 Route::get('/user_addresses', [App\Http\Controllers\Api\UserAddressController::class, 'index'])->name('users.addresses');
+Route::get('/user_phones', [App\Http\Controllers\Api\UserPhoneController::class, 'index'])->name('users.phones');
 
 
 //post
 Route::post('/user_orders',[App\Http\Controllers\Api\UserOrderController::class, 'store'])->name('order.store');
+
+Route::put('/products/update/{id}', [App\Http\Controllers\Api\ProductController::class, 'update'])->name('product.stock.update');

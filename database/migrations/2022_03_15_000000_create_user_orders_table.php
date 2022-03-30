@@ -14,6 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->decimal('total', 6,2);
+            $table->integer('total_quantity');
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->foreign('payment_id')->references('id')->on('payment');
             $table->timestamps();
