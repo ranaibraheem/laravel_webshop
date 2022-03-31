@@ -11,11 +11,11 @@
 
                     <h3 v-if="products[productindex].onsale30"><b>Sale 30%</b><br>
                         <b>Old Price: </b><span class="onSale">{{products[productindex].price}}$</span><br>
-                        <span class="newPrice30"> New Price: <b>{{products[productindex].price*30/100}}$</b></span><hr>
+                        <span class="newPrice30"> New Price: <b>{{products[productindex].price-products[productindex].price*30/100}}$</b></span><hr>
                     </h3>
                     <h3 v-else-if="products[productindex].onsale50"><b>Sale 50%</b>
                         <span class="onSale">{{products[productindex].price}}$</span><br>
-                        <span class="newPrice50"> New Price: <b>{{products[productindex].price*50/100}}$</b></span><hr>
+                        <span class="newPrice50"> New Price: <b>{{products[productindex].price-products[productindex].price*50/100}}$</b></span><hr>
                     </h3>
                     <h3 v-else>Price: {{products[productindex].price}}$</h3>
                     <h3 class="soldOut" v-if="products[productindex].stock===0">Sold Out</h3>
