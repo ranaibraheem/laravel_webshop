@@ -5986,14 +5986,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     shoppingCart: {
@@ -31222,7 +31214,7 @@ var render = function () {
                                                 staticClass: "form-label",
                                                 attrs: { for: "phone2" },
                                               },
-                                              [_vm._v("Phone1")]
+                                              [_vm._v("Phone2")]
                                             ),
                                             _vm._v(" "),
                                             _c("input", {
