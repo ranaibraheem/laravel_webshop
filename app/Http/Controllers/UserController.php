@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\UserAddresses;
+use App\Models\UserAddress;
 use App\Models\UserPhones;
 
 class UserController extends Controller
@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function showUser($id){
         $user= User::find($id);
-        $useraddress= UserAddresses::find($id);
+        $useraddress= UserAddress::find($id);
         $userphone= Userphones::find($id);
         return view('admin/users/user', 
             [   'user' => $user, 
@@ -53,7 +53,7 @@ class UserController extends Controller
 
     public function editUser($id){
         $user = User::find($id);
-        $useraddress = UserAddresses::find($id);
+        $useraddress = UserAddress::find($id);
         $userphone = UserPhones::find($id);
         return view('admin/users/edituser', 
             [   'user' => $user, 
