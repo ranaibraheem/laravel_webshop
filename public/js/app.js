@@ -32183,8 +32183,9 @@ var render = function () {
                           _c("b", [
                             _vm._v(
                               _vm._s(
-                                (_vm.products[_vm.productindex].price * 30) /
-                                  100
+                                _vm.products[_vm.productindex].price -
+                                  (_vm.products[_vm.productindex].price * 30) /
+                                    100
                               ) + "$"
                             ),
                           ]),
@@ -32207,8 +32208,9 @@ var render = function () {
                           _c("b", [
                             _vm._v(
                               _vm._s(
-                                (_vm.products[_vm.productindex].price * 50) /
-                                  100
+                                _vm.products[_vm.productindex].price -
+                                  (_vm.products[_vm.productindex].price * 50) /
+                                    100
                               ) + "$"
                             ),
                           ]),
